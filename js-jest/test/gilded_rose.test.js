@@ -64,4 +64,20 @@ describe("Gilded Rose", function() {
     expect(items[0].sellIn).toBe(6)
     expect(items[0].quality).toBe(80)
   });
+
+  it("should read back qualities of a conjured item with double-diminished quality and sell-in", function() {
+    const gildedRose = new Shop([new Item("Conjured item", 6, 10)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Conjured item");
+    expect(items[0].sellIn).toBe(5)
+    expect(items[0].quality).toBe(8)
+  });
+
+  it("should read back qualities of a conjured fish with double-diminished quality and sell-in, tests input acceptance", function() {
+    const gildedRose = new Shop([new Item("conjured fish", 3, 16)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("conjured fish");
+    expect(items[0].sellIn).toBe(2)
+    expect(items[0].quality).toBe(14)
+  });
 });
