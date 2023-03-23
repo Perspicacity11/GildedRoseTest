@@ -83,7 +83,7 @@ class Item {
     
         this.items[i].sellIn -= 1;
   
-        if (this.items[i].sellIn < 0) {
+        if (this.items[i].sellIn <= 0) {
           if (this.items[i].quality > 1) {
               this.items[i].quality -= 2;
           } else {

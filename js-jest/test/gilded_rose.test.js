@@ -98,4 +98,22 @@ describe("Gilded Rose", function() {
     expect(items[2].sellIn).toBe(5)
     expect(items[2].quality).toBe(4)
   });
+
+  it("should test minimum quality (that quality never becomes negative as sell-in decreases below 0)", function() {
+    const gildedRose = new Shop(
+      [new Item("Test item", -5, 0), 
+      new Item("Conjured item", -5, 0), 
+      new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0)]
+      );
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Test item");
+    expect(items[0].sellIn).toBe(-6)
+    expect(items[0].quality).toBe(0)
+    expect(items[1].name).toBe("Conjured item");
+    expect(items[1].sellIn).toBe(-6)
+    expect(items[1].quality).toBe(0)
+    expect(items[2].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[2].sellIn).toBe(-2)
+    expect(items[2].quality).toBe(0)
+  });
 });
