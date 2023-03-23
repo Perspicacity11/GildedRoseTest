@@ -80,4 +80,22 @@ describe("Gilded Rose", function() {
     expect(items[0].sellIn).toBe(2)
     expect(items[0].quality).toBe(14)
   });
+
+  it("should read back qualities of a number of items", function() {
+    const gildedRose = new Shop(
+      [new Item("Test item", 6, 10), 
+      new Item("Conjured item", 6, 8), 
+      new Item("Backstage passes to a TAFKAL80ETC concert", 6, 2)]
+      );
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Test item");
+    expect(items[0].sellIn).toBe(5)
+    expect(items[0].quality).toBe(9)
+    expect(items[1].name).toBe("Conjured item");
+    expect(items[1].sellIn).toBe(5)
+    expect(items[1].quality).toBe(6)
+    expect(items[2].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[2].sellIn).toBe(5)
+    expect(items[2].quality).toBe(4)
+  });
 });
